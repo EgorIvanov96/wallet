@@ -3,6 +3,7 @@ from djoser.views import UserViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.db import transaction
+from rest_framework.permissions import IsAuthenticated
 
 from users.models import User
 from reviews.models import Wallets
@@ -19,6 +20,7 @@ class WelltsViewSet(viewsets.ModelViewSet):
     """Вьюсет для кошелька."""
     queryset = Wallets.objects.all()
     serializer_class = WalletsSerializer
+    permission_classes = (IsAuthenticated,)
 
     @action(detail=True, methods=['post'])
     def operation(self, request, pk=None):
