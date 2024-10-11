@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Wallets
+
+admin.site.register(Wallets)
+admin.site.empty_value_display = 'Не задано'
